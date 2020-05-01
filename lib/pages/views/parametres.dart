@@ -12,57 +12,8 @@ class ParametrePage extends StatefulWidget {
 
 class _ParametrePageState extends State<ParametrePage> {
   Future<bool> _onBackPressd() {
-    return showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              title: Row(
-                children: <Widget>[
-                  Image.asset(
-                    'assets/logo/logo.png',
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Center(
-                      child: Text(
-                    'Trainning Flutter crypto',
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                  )),
-                ],
-              ),
-              content: Container(
-                  height: 20,
-                  alignment: Alignment.center,
-                  child: Text('Voulez-vous deconnecter')),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text(
-                    'Non',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  onPressed: () => Navigator.pop(context, false),
-                ),
-                RaisedButton(
-                  color: Colors.black,
-                  child: Text(
-                    'Oui',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => HomePage()));
-                  },
-                ),
-              ],
-            ));
+    return Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   @override
