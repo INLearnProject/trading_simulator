@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trading_simulator/pages/connexion/password_forgotten.dart';
 import 'package:trading_simulator/pages/connexion/register.dart';
 
+//Potter integration view
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();

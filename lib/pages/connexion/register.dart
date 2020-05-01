@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trading_simulator/pages/connexion/login.dart';
 
+//Potter integration view
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
