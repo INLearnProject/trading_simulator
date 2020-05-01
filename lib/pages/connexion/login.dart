@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trading_simulator/pages/connexion/password_forgotten.dart';
 import 'package:trading_simulator/pages/connexion/register.dart';
+import 'package:trading_simulator/pages/views/home.dart';
 
 //Potter integration view
 class LoginPage extends StatefulWidget {
@@ -161,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    print('login');
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>HomePage()));
                                   },
                                 ),
                               ),
