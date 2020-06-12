@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:trading_simulator/pages/connexion/login.dart';
+import 'package:trading_simulator/app_localizations.dart';
 
 //Potter integration view
 class PasswordForgotten extends StatefulWidget {
@@ -51,7 +53,8 @@ class _PasswordForgottenState extends State<PasswordForgotten> {
                               height: 15,
                             ),
                             Text(
-                              'Mot de passe Oublier',
+                              AppLocalizations.of(context)
+                                  .translate('pass_oublier'),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -80,7 +83,8 @@ class _PasswordForgottenState extends State<PasswordForgotten> {
                                         borderSide:
                                             BorderSide(color: Colors.white)),
                                     labelStyle: TextStyle(color: Colors.white),
-                                    labelText: 'Adresse email',
+                                    labelText: AppLocalizations.of(context)
+                                        .translate('mail'),
                                     prefixIcon: Icon(
                                       Icons.email,
                                       color: Colors.white,
@@ -104,7 +108,8 @@ class _PasswordForgottenState extends State<PasswordForgotten> {
                                         borderSide:
                                             BorderSide(color: Colors.white)),
                                     labelStyle: TextStyle(color: Colors.white),
-                                    labelText: 'Nouveau mot de passe',
+                                    labelText: AppLocalizations.of(context)
+                                        .translate('pass_new'),
                                     prefixIcon: Icon(
                                       Icons.lock,
                                       color: Colors.white,
@@ -128,7 +133,8 @@ class _PasswordForgottenState extends State<PasswordForgotten> {
                                         borderSide:
                                             BorderSide(color: Colors.white)),
                                     labelStyle: TextStyle(color: Colors.white),
-                                    labelText: ' Confirmer mot de passe',
+                                    labelText: AppLocalizations.of(context)
+                                        .translate('pass_confirm'),
                                     prefixIcon: Icon(
                                       Icons.lock_outline,
                                       color: Colors.white,
@@ -145,14 +151,16 @@ class _PasswordForgottenState extends State<PasswordForgotten> {
                                 elevation: 10,
                                 color: Colors.white,
                                 child: Text(
-                                  'Reinitialiser',
+                                  AppLocalizations.of(context)
+                                      .translate('reset'),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20,
                                   ),
                                 ),
                                 onPressed: () {
-                                  print('login');
+                                  print(AppLocalizations.of(context)
+                                      .translate('login'));
                                 },
                               ),
                             ),
@@ -171,7 +179,8 @@ class _PasswordForgottenState extends State<PasswordForgotten> {
                                                   LoginPage()));
                                     },
                                     child: Text(
-                                      'Connecter-vous ?',
+                                      AppLocalizations.of(context)
+                                          .translate('connect_'),
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trading_simulator/pages/connexion/password_forgotten.dart';
 import 'package:trading_simulator/pages/connexion/register.dart';
 import 'package:trading_simulator/pages/views/home.dart';
+import 'package:trading_simulator/app_localizations.dart';
 
 //Potter integration view
 class LoginPage extends StatefulWidget {
@@ -10,47 +11,61 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Future<bool> _onBackPressd() {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              title: Row(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/logo/logo.png',
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Center(
+                      child: Text(
+                    AppLocalizations.of(context).translate('trainning'),
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  )),
+                ],
+              ),
+              content: Container(
+                  height: 20,
+                  alignment: Alignment.center,
+                  child: Text(AppLocalizations.of(context).translate('out'))),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(
+                    AppLocalizations.of(context).translate('oui'),
+                    style: TextStyle(color: Colors.red),
+                  ),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+                RaisedButton(
+                  color: Colors.black,
+                  child: Text(
+                    AppLocalizations.of(context).translate('non'),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () => Navigator.pop(context, true),
+                ),
+              ],
+            ));
+  }
 
-  Future<bool> _onBackPressd(){
-
-  return showDialog(
-    context: context,
-    builder: (context)=>AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      title: Row(
-        children: <Widget>[
-          Image.asset('assets/logo/logo.png',height: 20,),
-          SizedBox(width: 5,),
-          Center(child: Text('Trainning Flutter crypto',style: TextStyle(fontSize: 14,),)),
-        ],
-      ),
-      content: Container(
-        height: 20,
-        alignment: Alignment.center,
-        child: Text('Voulez-vous quitter l\'application')),
-      actions: <Widget>[
-        FlatButton(
-          child: Text('Non',style: TextStyle(color: Colors.red),),
-          onPressed: ()=>Navigator.pop(context,false),
-        ),
-        RaisedButton(
-          color: Colors.black,
-          child: Text('Oui',style: TextStyle(
-                  color: Colors.white,
-            ),
-          ),
-          onPressed: ()=>Navigator.pop(context,true),
-        ),
-      ],
-    )
-  );
-}
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: _onBackPressd,
+      onWillPop: _onBackPressd,
       child: Scaffold(
         body: Stack(
           children: <Widget>[
@@ -85,7 +100,8 @@ class _LoginPageState extends State<LoginPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Connecter-vous',
+                                AppLocalizations.of(context)
+                                    .translate('connect'),
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -103,7 +119,8 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               Container(
                                 child: TextField(
-                                  cursorColor: Color.fromARGB(255, 255, 255, 255),
+                                  cursorColor:
+                                      Color.fromARGB(255, 255, 255, 255),
                                   style: TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
@@ -113,8 +130,10 @@ class _LoginPageState extends State<LoginPage> {
                                       focusedBorder: OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.white)),
-                                      labelStyle: TextStyle(color: Colors.white),
-                                      labelText: 'Adresse email',
+                                      labelStyle:
+                                          TextStyle(color: Colors.white),
+                                      labelText: AppLocalizations.of(context)
+                                          .translate('mail'),
                                       prefixIcon: Icon(
                                         Icons.email,
                                         color: Colors.white,
@@ -127,7 +146,8 @@ class _LoginPageState extends State<LoginPage> {
                               Container(
                                 child: TextField(
                                   obscureText: true,
-                                  cursorColor: Color.fromARGB(255, 255, 255, 255),
+                                  cursorColor:
+                                      Color.fromARGB(255, 255, 255, 255),
                                   style: TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
@@ -137,8 +157,10 @@ class _LoginPageState extends State<LoginPage> {
                                       focusedBorder: OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.white)),
-                                      labelStyle: TextStyle(color: Colors.white),
-                                      labelText: 'Mot de passe',
+                                      labelStyle:
+                                          TextStyle(color: Colors.white),
+                                      labelText: AppLocalizations.of(context)
+                                          .translate('pass'),
                                       prefixIcon: Icon(
                                         Icons.lock,
                                         color: Colors.white,
@@ -155,14 +177,17 @@ class _LoginPageState extends State<LoginPage> {
                                   elevation: 10,
                                   color: Colors.white,
                                   child: Text(
-                                    'Connexion',
+                                    AppLocalizations.of(context)
+                                        .translate('connection'),
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
                                     ),
                                   ),
                                   onPressed: () {
-                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>HomePage()));
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage()));
                                   },
                                 ),
                               ),
@@ -179,11 +204,16 @@ class _LoginPageState extends State<LoginPage> {
                                               CrossAxisAlignment.start,
                                           children: <Widget>[
                                             InkWell(
-                                              onTap: (){
-                                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>PasswordForgotten()));
+                                              onTap: () {
+                                                Navigator.of(context)
+                                                    .pushReplacement(
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                PasswordForgotten()));
                                               },
                                               child: Text(
-                                                'Mot de passe oublier',
+                                                AppLocalizations.of(context)
+                                                    .translate('pass_oublier'),
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 10,
@@ -208,14 +238,19 @@ class _LoginPageState extends State<LoginPage> {
                                           elevation: 10,
                                           color: Colors.white,
                                           child: Text(
-                                            'Creer un compte',
+                                            AppLocalizations.of(context)
+                                                .translate('creer_compte'),
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 10,
                                             ),
                                           ),
                                           onPressed: () {
-                                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>RegisterPage()));
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            RegisterPage()));
                                           },
                                         ),
                                       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:trading_simulator/app_localizations.dart';
 import 'package:trading_simulator/pages/views/home.dart';
 import 'package:trading_simulator/pages/widget/parametres/app_bar.dart';
 import 'package:trading_simulator/pages/widget/parametres/cardvue_params.dart';
@@ -37,7 +39,8 @@ class _ParametrePageState extends State<ParametrePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Autres paramètres',
+                          AppLocalizations.of(context)
+                              .translate('setting_other'),
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -52,8 +55,7 @@ class _ParametrePageState extends State<ParametrePage> {
                         ),
                       ],
                     ),
-                  )
-              ),
+                  )),
               cardAutresparams(),
               Container(
                 margin: EdgeInsets.only(bottom: 50),
@@ -64,14 +66,15 @@ class _ParametrePageState extends State<ParametrePage> {
                     elevation: 10,
                     color: Color.fromRGBO(39, 28, 12, 1),
                     child: Text(
-                      'DECONNECTER',
+                      AppLocalizations.of(context).translate('out_compte'),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.normal),
                     ),
                     onPressed: () {
-                      print('Deconnecter');
+                      print(AppLocalizations.of(context)
+                          .translate('out_comptee'));
                       // Navigator.of(context).pushReplacement(
                       //     MaterialPageRoute(
                       //         builder: (context) => ParametrePage()));

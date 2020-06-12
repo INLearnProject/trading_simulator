@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:trading_simulator/app_localizations.dart';
 import 'package:trading_simulator/pages/connexion/login.dart';
 import 'package:trading_simulator/pages/views/parametres.dart';
 
@@ -9,50 +11,65 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Future<bool> _onBackPressd() {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              title: Row(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/logo/logo.png',
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Center(
+                      child: Text(
+                    AppLocalizations.of(context).translate('trainning'),
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  )),
+                ],
+              ),
+              content: Container(
+                  height: 20,
+                  alignment: Alignment.center,
+                  child: Text(
+                      AppLocalizations.of(context).translate('connect_out'))),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(
+                    AppLocalizations.of(context).translate('non'),
+                    style: TextStyle(color: Colors.red),
+                  ),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+                RaisedButton(
+                  color: Colors.black,
+                  child: Text(
+                    AppLocalizations.of(context).translate('oui'),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                ),
+              ],
+            ));
+  }
 
-  Future<bool> _onBackPressd(){
-
-  return showDialog(
-    context: context,
-    builder: (context)=>AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      title: Row(
-        children: <Widget>[
-          Image.asset('assets/logo/logo.png',height: 20,),
-          SizedBox(width: 5,),
-          Center(child: Text('Trainning Flutter crypto',style: TextStyle(fontSize: 14,),)),
-        ],
-      ),
-      content: Container(
-        height: 20,
-        alignment: Alignment.center,
-        child: Text('Voulez-vous deconnecter')),
-      actions: <Widget>[
-        FlatButton(
-          child: Text('Non',style: TextStyle(color: Colors.red),),
-          onPressed: ()=>Navigator.pop(context,false),
-        ),
-        RaisedButton(
-          color: Colors.black,
-          child: Text('Oui',style: TextStyle(
-                  color: Colors.white,
-            ),
-          ),
-          onPressed: (){
-            Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => LoginPage()));
-          },
-        ),
-      ],
-    )
-  );
-}
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: _onBackPressd,
+      onWillPop: _onBackPressd,
       child: Scaffold(
         body: Container(
           child: Column(
@@ -69,15 +86,15 @@ class _HomePageState extends State<HomePage> {
                     elevation: 10,
                     color: Colors.white,
                     child: Text(
-                      'Parametres',
+                      AppLocalizations.of(context).translate('setting'),
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 10,
                       ),
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => ParametrePage()));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => ParametrePage()));
                     },
                   ),
                 ),

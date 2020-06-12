@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:trading_simulator/pages/connexion/login.dart';
+import 'package:trading_simulator/app_localizations.dart';
 
 //Potter integration view
 class RegisterPage extends StatefulWidget {
@@ -8,7 +10,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
   Future<bool> _onBackPressd() {
     return Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
@@ -52,7 +53,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               height: 15,
                             ),
                             Text(
-                              'Nouveau Compte',
+                              AppLocalizations.of(context)
+                                  .translate('new_compte'),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -74,13 +76,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                 style: TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.white),
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white)),
                                     labelStyle: TextStyle(color: Colors.white),
-                                    labelText: 'Nom',
+                                    labelText: AppLocalizations.of(context)
+                                        .translate('name'),
                                     prefixIcon: Icon(
                                       Icons.person,
                                       color: Colors.white,
@@ -96,13 +100,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                 style: TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.white),
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white)),
                                     labelStyle: TextStyle(color: Colors.white),
-                                    labelText: 'Adresse email',
+                                    labelText: AppLocalizations.of(context)
+                                        .translate('mail'),
                                     prefixIcon: Icon(
                                       Icons.email,
                                       color: Colors.white,
@@ -119,13 +125,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                 style: TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.white),
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white)),
                                     labelStyle: TextStyle(color: Colors.white),
-                                    labelText: 'Mot de passe',
+                                    labelText: AppLocalizations.of(context)
+                                        .translate('pass'),
                                     prefixIcon: Icon(
                                       Icons.lock,
                                       color: Colors.white,
@@ -142,13 +150,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                 style: TextStyle(color: Colors.white),
                                 decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.white),
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white)),
                                     labelStyle: TextStyle(color: Colors.white),
-                                    labelText: ' Confirmer mot de passe',
+                                    labelText: AppLocalizations.of(context)
+                                        .translate('pass_confirm'),
                                     prefixIcon: Icon(
                                       Icons.lock_outline,
                                       color: Colors.white,
@@ -165,14 +175,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                 elevation: 10,
                                 color: Colors.white,
                                 child: Text(
-                                  'Nouveau compte',
+                                  AppLocalizations.of(context)
+                                      .translate('new_compte'),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20,
                                   ),
                                 ),
                                 onPressed: () {
-                                  print('login');
+                                  print(AppLocalizations.of(context)
+                                      .translate('login'));
                                 },
                               ),
                             ),
@@ -191,7 +203,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                                   LoginPage()));
                                     },
                                     child: Text(
-                                      'Connecter-vous ?',
+                                      AppLocalizations.of(context)
+                                          .translate('connect_'),
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,
