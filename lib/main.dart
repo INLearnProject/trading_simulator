@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'screens/welcome_screen.dart';
 
-class MyApp extends StatelessWidget {
+import 'constants/routes_constant.dart';
+
+void main() => runApp(TradingSimulator());
+
+class TradingSimulator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Trainning Flutter',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Home(),
-    );
-  }
-}
-
-class Home extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Reset Project"),
-      ),
+      initialRoute: RoutesConstant.welcome,
+      routes: {
+        RoutesConstant.welcome: (context) => WelcomeScreen(),
+      },
     );
   }
 }
