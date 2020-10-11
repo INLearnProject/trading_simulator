@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/welcome_screen.dart';
+import 'screens/register_screen.dart';
 
 import 'constants/routes_constant.dart';
 
@@ -15,6 +16,7 @@ class TradingSimulator extends StatelessWidget {
       initialRoute: RoutesConstant.welcome,
       routes: {
         RoutesConstant.welcome: (context) => WelcomeScreen(),
+         RoutesConstant.register: (context) => RegisterScreen(),
       },
     );
   }

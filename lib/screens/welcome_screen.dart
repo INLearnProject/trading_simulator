@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/routes_constant.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -8,7 +9,20 @@ class WelcomeScreen extends StatelessWidget {
         title: Text("Welcome"),
       ),
       body: Center(
-        child: Text("Bienvenue"),
+        child: Column(
+          children: [
+            FlatButton(
+              child: Text("connexion"),
+              onPressed: () {},
+            ),
+            FlatButton(
+              child: Text("inscription"),
+              onPressed: () {
+                Navigator.pushNamed(context, RoutesConstant.register);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
