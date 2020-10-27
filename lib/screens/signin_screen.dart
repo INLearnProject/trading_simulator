@@ -4,16 +4,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:toast/toast.dart';
 
-import 'components/appbar_component.dart';
-import 'components/textformfield_component.dart';
-import 'components/button_component.dart';
-
 import '../constants/routes_constant.dart';
 
-class RegisterScreen extends StatelessWidget {
-  final FirebaseAuth _firebase = FirebaseAuth.instance;
+import 'components/appbar_component.dart';
+import 'components/button_component.dart';
+import 'components/textformfield_component.dart';
+import 'components/error_dialog_component.dart';
+
+class SigninScreen extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _passController = TextEditingController();
+  final FirebaseAuth _firebase = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -21,31 +21,30 @@ class RegisterScreen extends StatelessWidget {
     String _password = "";
 
     return Scaffold(
-      appBar: ComponentAppBar(titleAppBar: ": S'inscrire").build(),
+      appBar: ComponentAppBar(titleAppBar: ": se connecter").build(),
       body: SafeArea(
         child: Form(
           key: _formKey,
-          child: Column(
+          child: ListView(
             children: [
               ComponentTextFormField(
                 obscure: false,
                 validator: (email) {
                   if (!EmailValidator.validate(email.replaceAll(" ", ""))) {
-                    return "Merci d'enter une adresse email correcte.";
+                    return "L'adresse email est invalide";
                   }
                   return null;
                 },
-                hintText: "Adresse email",
-                onSaved: (value) {
-                  _email = value.replaceAll(" ", "");
+                hintText: "Adresse Email",
+                onSaved: (emailSaved) {
+                  _email = emailSaved.replaceAll(" ", "");
                 },
               ),
               SizedBox(
                 height: 10.0,
               ),
               ComponentTextFormField(
-                obscure: false,
-                controller: _passController,
+                obscure: true,
                 validator: (mdp) {
                   if (mdp.length < 6) {
                     return "Le mot de passe doit contenir au minimun 6 caractère";
@@ -54,51 +53,42 @@ class RegisterScreen extends StatelessWidget {
                   }
                 },
                 hintText: "Mot de passe",
-                onSaved: (value) {
-                  _password = value;
+                onSaved: (passwordSaved) {
+                  _password = passwordSaved;
                 },
               ),
               SizedBox(
-                height: 10.0,
-              ),
-              ComponentTextFormField(
-                obscure: false,
-                validator: (confirmMdp) {
-                  if (confirmMdp.isEmpty) {
-                    return "Merci de contirmer votre mot de passe";
-                  } else if (confirmMdp != _passController.text) {
-                    return "La confirmation du mot de passe n'est pas identique au mot de passe";
-                  }
-                  return null;
-                },
-                hintText: "Confirmer mot de passe",
-                onSaved: (value) {},
+                height: 24.0,
               ),
               ComponentButton(
-                buttonname: "Sinscrire",
+                buttonname: "Se connecter",
                 onPressed: () async {
-                  try {
-                    if (_formKey.currentState.validate()) {
-                      _formKey.currentState.save();
+                  if (_formKey.currentState.validate()) {
+                    _formKey.currentState.save();
+                    try {
                       final FirebaseUser user =
-                          (await _firebase.createUserWithEmailAndPassword(
+                          (await _firebase.signInWithEmailAndPassword(
                         email: _email,
                         password: _password,
                       ))
                               .user;
-                      Toast.show("Inscription réussie", context,
+                      Toast.show("Connecté", context,
                           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                       Navigator.pushNamedAndRemoveUntil(
                           context,
                           RoutesConstant.userHome,
                           (Route<dynamic> route) => false);
                       print(user);
+                    } catch (error) {
+                      print(error);
+                      showDialog(
+                          context: context,
+                          builder: (context) =>
+                              ComponentErrorDialog(error.code));
                     }
-                  } catch (error) {
-                    print(error);
                   }
                 },
-              )
+              ),
             ],
           ),
         ),
